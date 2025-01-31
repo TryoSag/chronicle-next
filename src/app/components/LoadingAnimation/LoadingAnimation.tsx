@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 const LoadingAnimation = (): JSX.Element => {
   return (
     <svg className="ring" viewBox="25 25 50 50" stroke-width="5">

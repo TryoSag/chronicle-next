@@ -1,4 +1,4 @@
-import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
+import ButtonPlusMinus from "../../ButtonPlusMinus/ButtonPlusMinus";
 
 interface propsCreateTagCategory {
   index: number;

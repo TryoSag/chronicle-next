@@ -1,6 +1,6 @@
 import { useState } from "react";
-import UserTag from "../UserTag/UserTag";
-import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
+import UserTag from "../UserTag";
+import ButtonPlusMinus from "../../ButtonPlusMinus/ButtonPlusMinus";
 import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../../redux/store/store";
 import { useSelector } from "react-redux";

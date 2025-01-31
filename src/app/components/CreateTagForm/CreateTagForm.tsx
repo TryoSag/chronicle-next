@@ -4,7 +4,7 @@ import { IUserTag, IUserTagCategory } from "../../types/userTypes";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
 import { useNavigate } from "react-router-dom";
-import CreateTagCategoriesList from "../CreateTagCategoriesList/CreateTagCategoriesList";
+import CreateTagCategoriesList from "./CreateTagCategoriesList/CreateTagCategoriesList";
 
 const CreateTagForm = (): JSX.Element => {
   const emptyTagForm: IUserTag = {
