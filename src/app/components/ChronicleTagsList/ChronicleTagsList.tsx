@@ -1,14 +1,10 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import ChronicleTag from "../ChronicleTag/ChronicleTag";
 import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/store";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "next/navigation";
 
 const ChronicleTagsList = (): JSX.Element => {
-  const navigate = useNavigate();
-  const chronicles = useSelector((state: RootState) => state.chronicles);
-  const { chronicleId } = useParams();
+  const params = useParams();
   const chronicleIdSelected = chronicleId?.replace(":", "");
 
   const { tags } = chronicles.filter(
@@ -17,13 +13,9 @@ const ChronicleTagsList = (): JSX.Element => {
 
   const [expand, setExpand] = useState("");
 
-  const addTag = (): void => {
-    navigate(`/userTags${chronicleId}`);
-  };
+  const addTag = (): void => {};
 
-  const actionEdit = (tagIndex: number) => {
-    navigate(`/editTag${chronicleId}:${tagIndex}`);
-  };
+  const actionEdit = (): void => {};
 
   return (
     <main className="container-chronicleTagsList">

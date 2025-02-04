@@ -1,20 +1,12 @@
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { IChronicle } from "../../types/chroniclesTypes";
-import { RootState } from "../../redux/store/store";
+import { JSX } from "react";
+import { IChronicle } from "../../../types/chroniclesTypes";
 import Chronicle from "../Chronicle/Chronicle";
 import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
 
 const ChronclesList = (): JSX.Element => {
-  const navigate = useNavigate();
+  const chronicles: IChronicle[] = [];
 
-  const chronicles: IChronicle[] = useSelector(
-    (state: RootState) => state.chronicles
-  );
-
-  const newChronicle = (): void => {
-    navigate("/createChronicle");
-  };
+  const newChronicle = (): void => {};
 
   return (
     <main className="container-chronicleList">

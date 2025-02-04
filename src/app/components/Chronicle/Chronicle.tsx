@@ -1,5 +1,4 @@
 import { JSX } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface propsChronicle {
   chronicleName: string;
@@ -10,16 +9,12 @@ const Chronicle = ({
   chronicleName,
   chronicleId,
 }: propsChronicle): JSX.Element => {
-  const navigate = useNavigate();
-
-  const action = (): void => {
-    navigate(`/chronicleTags:${chronicleId}`);
-  };
+  const action = (): void => {};
 
   return (
     <li onClick={action} className="container-chronicle">
       <div className="container-chronicleDecoration">
-        <span className="text-name">{chronicleName}</span>
+        <span className="text-name">{chronicleName + chronicleId}</span>
       </div>
     </li>
   );
