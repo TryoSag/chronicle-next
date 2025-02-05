@@ -1,13 +1,9 @@
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import { RootState } from "../../redux/store/store";
-import { ICategory } from "../../types/chroniclesTypes";
-import { useParams, useNavigate } from "react-router-dom";
-import EditTagCategoriesList from "../EditTagCategoriesList/EditTagCategoriesList";
-import { editChronicleThunk } from "../../redux/thunks/chroniclesThunks";
+import { JSX, useState } from "react";
+import { ICategory } from "../../../types/chroniclesTypes";
+import { useParams } from "next/navigation";
+import EditTagCategoriesList from "./EditTagCategoriesList/EditTagCategoriesList";
 
 const EditTagForm = (): JSX.Element => {
-  const chronicles = useSelector((state: RootState) => state.chronicles);
   const { chronicleId, tagIndex } = useParams();
 
   const chronicleToEdit = chronicleId?.replace(":", "");
@@ -23,7 +19,6 @@ const EditTagForm = (): JSX.Element => {
   const selectedTagForm = selectedChronicle.tags[tagIndexToEdit];
 
   const [formData, setFormData] = useState(selectedTagForm);
-  const navigate = useNavigate();
 
   const updateForm = (
     event:
@@ -41,12 +36,12 @@ const EditTagForm = (): JSX.Element => {
   };
 
   const formSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     const editedChronicle = {
       ...selectedChronicle,
       tags: selectedChronicle.tags.splice(tagIndexToEdit, 1, formData),
     };
-    editChronicleThunk("Token", editedChronicle);
-    navigate(`/chronicleTags${chronicleId}`);
+    // navigate(`/chronicleTags${chronicleId}`);
   };
 
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EditTagCategory from "../EditTagCategory/EditTagCategory";
-import { ICategory } from "../../types/chroniclesTypes";
+import { ICategory } from "../../../../types/chroniclesTypes";
 
 interface propsEditTagCategoriesList {
   categories: ICategory[];

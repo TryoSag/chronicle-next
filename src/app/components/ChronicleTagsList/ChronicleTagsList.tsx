@@ -5,11 +5,10 @@ import { useParams } from "next/navigation";
 
 const ChronicleTagsList = (): JSX.Element => {
   const params = useParams();
-  const chronicleIdSelected = chronicleId?.replace(":", "");
-
-  const { tags } = chronicles.filter(
-    ({ chronicleId }) => chronicleId === chronicleIdSelected
-  )[0];
+  if (params && typeof params.id === "string") {
+    //const chronicleId = params.id as string;
+    //const chronicleIdSelected = chronicleId?.replace(":", "");
+  }
 
   const [expand, setExpand] = useState("");
 
@@ -20,7 +19,7 @@ const ChronicleTagsList = (): JSX.Element => {
   return (
     <main className="container-chronicleTagsList">
       <ul>
-        {tags.map((tag, tagIndex) => {
+        {/*{tags.map((tag, tagIndex) => {
           const expanded = tag.title === expand;
           return (
             <ChronicleTag
@@ -32,7 +31,7 @@ const ChronicleTagsList = (): JSX.Element => {
               key={`tag ${tag.title}`}
             />
           );
-        })}
+        })}*/}
       </ul>
       <ButtonPlusMinus action={addTag} symbol="plus" />
     </main>

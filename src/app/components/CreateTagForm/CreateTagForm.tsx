@@ -1,9 +1,5 @@
-import { useState } from "react";
-import { tagFormColors } from "../../utils/utils";
-import { IUserTag, IUserTagCategory } from "../../types/userTypes";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/store";
-import { useNavigate } from "react-router-dom";
+import { JSX, useState } from "react";
+import { IUserTag, IUserTagCategory } from "../../../types/userTypes";
 import CreateTagCategoriesList from "./CreateTagCategoriesList/CreateTagCategoriesList";
 
 const CreateTagForm = (): JSX.Element => {
@@ -12,9 +8,8 @@ const CreateTagForm = (): JSX.Element => {
     color: "white",
     categories: [],
   };
-  const { tags } = useSelector((state: RootState) => state.user);
+
   const [formData, setFormData] = useState(emptyTagForm);
-  const navigate = useNavigate();
 
   const updateForm = (
     event:
@@ -32,13 +27,14 @@ const CreateTagForm = (): JSX.Element => {
   };
 
   const formSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     if (
       tags.filter((tag) => tag.tagName === formData.tagName).length > 0 ||
       "" === formData.tagName
     ) {
       setFormData({ ...formData, tagName: "" });
     } else {
-      navigate("/userTags");
+      //navigate("/userTags");
     }
   };
 
@@ -62,9 +58,9 @@ const CreateTagForm = (): JSX.Element => {
         <label htmlFor="color" className="color-input">
           <div className={`container-colorSample ${formData.color}`} />
           <select id="color" onChange={updateForm} value={formData.color}>
-            {tagFormColors.map((color) => (
-              <option value={color}>{color}</option>
-            ))}
+            {
+              //colors selector
+            }
           </select>
         </label>
         <span className="text-createTagForm">Title:</span>

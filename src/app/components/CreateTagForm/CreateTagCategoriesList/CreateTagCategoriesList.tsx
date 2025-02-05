@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import CreateTagCategory from "../CreateTagCategory/CreateTagCategory";
-import { IUserTagCategory } from "../../types/userTypes";
+import { IUserTagCategory } from "../../../../types/userTypes";
 
 interface propsCreateTagCategoriesList {
   updateCategories: (categories: IUserTagCategory[]) => void;

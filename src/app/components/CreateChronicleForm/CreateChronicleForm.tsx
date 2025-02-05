@@ -1,13 +1,9 @@
-import { useState } from "react";
-import { RootState } from "../../redux/store/store";
-import { useSelector } from "react-redux";
-import { INewChronicle } from "../../types/chroniclesTypes";
+import { JSX, useState } from "react";
+import { INewChronicle } from "../../../types/chroniclesTypes";
 
 const CreateChronicleForm = (): JSX.Element => {
   const emptyNewChronicle = "";
 
-  const { userId } = useSelector((state: RootState) => state.user);
-  const chronicles = useSelector((state: RootState) => state.chronicles);
   const [formData, setFormData] = useState(emptyNewChronicle);
 
   const updateForm = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -15,6 +11,7 @@ const CreateChronicleForm = (): JSX.Element => {
   };
 
   const formSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     if (
       chronicles.filter((chronicle) => chronicle.chronicleName === formData)
         .length < 1
