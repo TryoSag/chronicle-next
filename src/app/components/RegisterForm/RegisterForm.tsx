@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { JSX, useState } from "react";
 
 const RegisterForm = (): JSX.Element => {
-  const navigate = useNavigate();
   const emptyRegisterForm = {
     name: "",
     username: "",
@@ -24,7 +22,7 @@ const RegisterForm = (): JSX.Element => {
     setFormData(emptyRegisterForm);
   };
 
-  const toLoginButton = () => navigate("/login");
+  // const toLoginButton = () => navigate("/login");
 
   return (
     <main className="container-RegisterForm">

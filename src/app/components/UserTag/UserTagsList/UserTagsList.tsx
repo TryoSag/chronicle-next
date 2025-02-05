@@ -7,36 +7,34 @@ import { useParams } from "next/navigation";
 
 const UserTagsList = (): JSX.Element => {
   const params = useParams();
-  if(params && typeof params.id === "string"){
-    const chronicleId = params.id as string
-  
+  if (params && typeof params.id === "string") {
+    const chronicleId = params.id as string;
     const chronicleIdSelected = chronicleId?.replace(":", "");
 
     const chronicleToEdit = chronicles.filter(
       ({ chronicleId }) => chronicleId === chronicleIdSelected
     )[0];
 
-  const selectedTag = (tag: IUserTag) => {
-    const newChronicleTag: ITag = {
-      ...tag,
-      resume: "",
-      title: "",
-      description: "",
-      categories: tag.categories.map((category) => ({
-        ...category,
-        categoryText: "",
-      })),
+    const selectedTag = (tag: IUserTag) => {
+      const newChronicleTag: ITag = {
+        ...tag,
+        resume: "",
+        title: "",
+        description: "",
+        categories: tag.categories.map((category) => ({
+          ...category,
+          categoryText: "",
+        })),
+      };
+      const editedChronicle = {
+        ...chronicleToEdit,
+        tags: [...chronicleToEdit.tags, newChronicleTag],
+      };
+      // navigate(`/editTag${chronicleId}`);
     };
-    const editedChronicle = {
-      ...chronicleToEdit,
-      tags: [...chronicleToEdit.tags, newChronicleTag],
-    };
-    editChronicleThunk("Token", editedChronicle);
-    navigate(`/editTag${chronicleId}`);
-  };
-}
+  }
   const newTag = (): void => {
-    navigate("/createTag");
+    // navigate("/createTag");
   };
 
   const [expand, setExpand] = useState("");
