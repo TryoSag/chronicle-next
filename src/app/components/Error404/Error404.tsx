@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 const Error404 = (): JSX.Element => {
   return (
     <main className="error404-container">

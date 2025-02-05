@@ -1,15 +1,11 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/store";
+import { JSX } from "react";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 
 const Feedback = (): JSX.Element => {
-  const { check, cross, loading } = useSelector(
-    (state: RootState) => state.feedback
-  );
-
   return (
     <section className="container-feedback">
-      {check && (
+      {
+        //check &&
         <div className="container-check">
           <div className="container-icon">
             <i>
@@ -33,8 +29,9 @@ const Feedback = (): JSX.Element => {
             </i>
           </div>
         </div>
-      )}
-      {cross && (
+      }
+      {
+        //cross &&
         <div className="container-cross">
           <div className="container-icon">
             <i>
@@ -58,14 +55,15 @@ const Feedback = (): JSX.Element => {
             </i>
           </div>
         </div>
-      )}
-      {loading && (
+      }
+      {
+        //loading &&
         <div className="container-loading">
           <div className="container-icon">
             <LoadingAnimation />
           </div>
         </div>
-      )}
+      }
     </section>
   );
 };

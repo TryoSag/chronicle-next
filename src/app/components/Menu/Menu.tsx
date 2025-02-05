@@ -1,19 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/store";
+import { JSX } from "react";
 
 const Menu = (visible: boolean): JSX.Element => {
-  const navigate = useNavigate();
+  // const chroniclesClick = () => navigate("/chronicles");
 
-  const { username } = useSelector((state: RootState) => state.user);
-
-  const chroniclesClick = () => navigate("/chronicles");
-
-  const tagsClick = () => navigate("/userTags");
+  // const tagsClick = () => navigate("/userTags");
 
   const logoutClick = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    // navigate("/");
   };
 
   return (
