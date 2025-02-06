@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import {IUserTag} from "../../../types/userTypes"
+import { IUserTag } from "../../../../types/userTypes";
 
 interface propUserTag {
   tag: IUserTag;

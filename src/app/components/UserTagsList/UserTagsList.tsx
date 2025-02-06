@@ -1,9 +1,9 @@
 import { JSX, useState } from "react";
-import UserTag from "../UserTag";
-import ButtonPlusMinus from "../../ButtonPlusMinus/ButtonPlusMinus";
-import { IUserTag } from "../../../../types/userTypes";
-import { ITag } from "../../../../types/chroniclesTypes";
+import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
+import { IUserTag } from "../../../types/userTypes";
+import { ITag } from "../../../types/chroniclesTypes";
 import { useParams } from "next/navigation";
+import UserTag from "./UserTag/UserTag";
 
 const UserTagsList = (): JSX.Element => {
   const params = useParams();
