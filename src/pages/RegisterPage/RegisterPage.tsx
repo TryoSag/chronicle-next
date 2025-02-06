@@ -1,4 +1,5 @@
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import { JSX } from "react";
+import RegisterForm from "../../app/components/RegisterForm/RegisterForm";
 
 const RegisterPage = (): JSX.Element => <RegisterForm />;
 

@@ -1,4 +1,5 @@
-import ChronicleTagsList from "../../components/ChronicleTagsList/ChronicleTagsList";
+import { JSX } from "react";
+import ChronicleTagsList from "../../app/components/ChronicleTagsList/ChronicleTagsList";
 
 const ChronicleTagsPage = (): JSX.Element => <ChronicleTagsList />;
 
