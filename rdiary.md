@@ -30,3 +30,5 @@ The docu it's a little tricky but the schema seems good. Finger cross.
 
 I add the project on SonarQube, a good tool to improve the detection of errors, vulnerabilities, technical debt, etc..
 https://sonarcloud.io/project/overview?id=TryoSag_chronicle-next
+I changed the models to separate the userTag which is a Tag template that makes the user, from the Tag which has the different fields to write.
+First migration to create the different models on db.
