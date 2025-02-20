@@ -20,8 +20,13 @@ Time to return to docu.
 I decide to start from writing the app path and the db elements models and find if somethings it's not easy to navigate or wrong, the functionality of every button and if it's necessary to add a new funcionality.
 Install Prisma and postgres correctly and then try to fix components and imports. First the walls then the roof (it's a local expression).
 
-# day 1
+# day 1 (19/2/25)
 
 Start write the diary
 Prisma installation and models schema configuration.
 The docu it's a little tricky but the schema seems good. Finger cross.
+
+# day 2 (20/2/25)
+
+I add the project on SonarQube, a good tool to improve the detection of errors, vulnerabilities, technical debt, etc..
+https://sonarcloud.io/project/overview?id=TryoSag_chronicle-next
