@@ -81,12 +81,22 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
   - id
   - author
   - name (unique)
+  - tags : tag[]
 
 - userTag
 
   - id
   - author
-  - name (unique)
+  - type (unique)
+  - name
+  - color
+  - categories : [ {name, text} ]
+
+- tag
+
+  - id
+  - author
+  - name
   - color
   - title
   - resume

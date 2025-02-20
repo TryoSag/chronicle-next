@@ -19,14 +19,16 @@ model User {
   email String    @unique
   pass  String
   chronicles Chronicle[]
-  usertags usertag[]
+  usertags userTag[]
+  tags tag[]
 }
 
 model Chronicle {
   id     Int      @id @default(autoincrement())
-  name   String   
   author User     @relation(fields: [userId], references: [id])
   userId Int
+  name   String   
+  tags   tag[]
 
   @@unique([name, userId])
 }
@@ -35,18 +37,29 @@ model Category {
   id      Int     @id @default(autoincrement())
   name    String
   text    String?
-  usertag usertag[]
+  tag     tag[]
+  userTag userTag[]
 }
 
-model usertag {
+model userTag {
   id      Int     @id @default(autoincrement())
   author  User    @relation(fields: [userId], references: [id])
   userId  Int
-  name    String  @unique
+  type    String  @unique
+  name    String  
   color   String
-  title   String
+  categories Category[]
+  
+}
+model tag {
+  id      Int     @id @default(autoincrement())
+  author  User    @relation(fields: [userId], references: [id])
+  userId  Int
+  name    String  
+  color   String  
+  title   String?
   resume  String?
   categories Category[]
   description String?
-
+  chronicle Chronicle[]
 }
