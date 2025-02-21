@@ -1,5 +1,5 @@
 import { JSX, useState } from "react";
-import { IUserTag, IUserTagCategory } from "../../../types/userTypes";
+import { IUserTag, IUserTagCategory } from "../../types/userTypes";
 import CreateTagCategoriesList from "./CreateTagCategoriesList/CreateTagCategoriesList";
 
 const CreateTagForm = (): JSX.Element => {

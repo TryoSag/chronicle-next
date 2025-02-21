@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { ITag } from "../../../types/chroniclesTypes";
+import { ITag } from "../../types/chroniclesTypes";
 
 interface propChronicleTag {
   tag: ITag;

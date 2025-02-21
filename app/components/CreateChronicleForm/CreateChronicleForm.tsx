@@ -1,5 +1,5 @@
 import { JSX, useState } from "react";
-import { INewChronicle } from "../../../types/chroniclesTypes";
+import { INewChronicle } from "../../types/chroniclesTypes";
 
 const CreateChronicleForm = (): JSX.Element => {
   const emptyNewChronicle = "";

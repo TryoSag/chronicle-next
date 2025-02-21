@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { IChronicle } from "../../../types/chroniclesTypes";
+import { IChronicle } from "../../types/chroniclesTypes";
 import Chronicle from "../Chronicle/Chronicle";
 import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
 

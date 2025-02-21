@@ -1,5 +1,5 @@
 import { JSX, useState } from "react";
-import { ICategory } from "../../../types/chroniclesTypes";
+import { ICategory } from "../../types/chroniclesTypes";
 import { useParams } from "next/navigation";
 import EditTagCategoriesList from "./EditTagCategoriesList/EditTagCategoriesList";
 
