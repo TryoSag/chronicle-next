@@ -32,3 +32,9 @@ I add the project on SonarQube, a good tool to improve the detection of errors, 
 https://sonarcloud.io/project/overview?id=TryoSag_chronicle-next
 I changed the models to separate the userTag which is a Tag template that makes the user, from the Tag which has the different fields to write.
 First migration to create the different models on db.
+
+# day 3 (21/2/25)
+
+I start with the refactor of the components and functions update.
+First is the Login page, I add the Register form and the Login form on the same page and a selector to choose which one it's show.
+On the register form I add a process to validate the format of the entering data and feedback to the user.
