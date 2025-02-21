@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+}
+
+model User {
+  id    Int       @id @default(autoincrement())
+  name  String?
+  email String    @unique
+  pass  String
+  chronicles Chronicle[]
+  usertags userTag[]
+  tags tag[]
+}
+
+model Chronicle {
+  id     Int      @id @default(autoincrement())
+  author User     @relation(fields: [userId], references: [id])
+  userId Int
+  name   String   
+  tags   tag[]
+
+  @@unique([name, userId])
+}
+
+model Category {
+  id      Int     @id @default(autoincrement())
+  name    String
+  text    String?
+  tag     tag[]
+  userTag userTag[]
+}
+
+model userTag {
+  id      Int     @id @default(autoincrement())
+  author  User    @relation(fields: [userId], references: [id])
+  userId  Int
+  type    String  @unique
+  name    String  
+  color   String
+  categories Category[]
+  
+}
+model tag {
+  id      Int     @id @default(autoincrement())
+  author  User    @relation(fields: [userId], references: [id])
+  userId  Int
+  name    String  
+  color   String  
+  title   String?
+  resume  String?
+  categories Category[]
+  description String?
+  chronicle Chronicle[]
+}

@@ -1,7 +1,7 @@
 import { JSX, useState } from "react";
 import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
-import { IUserTag } from "../../../types/userTypes";
-import { ITag } from "../../../types/chroniclesTypes";
+import { IUserTag } from "../../types/userTypes";
+import { ITag } from "../../types/chroniclesTypes";
 import { useParams } from "next/navigation";
 import UserTag from "./UserTag/UserTag";
 
