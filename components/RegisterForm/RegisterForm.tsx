@@ -6,17 +6,18 @@ const RegisterForm = (): JSX.Element => {
     email: "",
     password: "",
   };
+  const inicialValidateData = {
+    name: false,
+    email: false,
+    password: false,
+  };
   const regexEmail = new RegExp(
     "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"
   );
   const regExPassword = new RegExp("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$");
 
   const [formData, setFormData] = useState(emptyRegisterForm);
-  const [validateData, setValidateData] = useState({
-    name: false,
-    email: false,
-    password: false,
-  });
+  const [validateData, setValidateData] = useState(inicialValidateData);
   const [tooltip, setTooltip] = useState("");
 
   const updateForm = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -45,28 +46,23 @@ const RegisterForm = (): JSX.Element => {
         break;
       default:
     }
+    setTooltip(event.target.id);
   };
 
-  const tooltipText = (event: React.MouseEvent<HTMLInputElement>): void => {
-    const target = event.target as HTMLInputElement;
-    switch (target.id) {
-      case "name":
-        setTooltip("Name must be less than 20 characters");
-        break;
-      case "password":
-        setTooltip(
-          "Password must be between 8 and 16 characters, contain at least one numeric digit, one uppercase and one lowercase letter"
-        );
-        break;
-      default:
-        setTooltip("");
-    }
+  const tooltipText = (
+    event:
+      | React.MouseEvent<HTMLInputElement>
+      | React.FocusEvent<HTMLInputElement>
+  ): void => {
+    const targetId = (event.target as HTMLInputElement).id || "";
+
+    setTooltip(targetId);
   };
   const resetTooltipText = (): void => setTooltip("");
 
   const formSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
+    // register a back
     setFormData(emptyRegisterForm);
   };
 
@@ -83,38 +79,52 @@ const RegisterForm = (): JSX.Element => {
             type="text"
             id="name"
             placeholder="Name"
-            autoComplete="off"
             maxLength={20}
             value={formData.name}
             onChange={updateForm}
             onMouseEnter={tooltipText}
             onMouseLeave={resetTooltipText}
+            onFocus={tooltipText}
+            onBlur={resetTooltipText}
           />
-          <div>{validateData.name ? "O" : "X"}</div>
+          {tooltip === "name" && (
+            <span>Name must be less than 20 characters</span>
+          )}
+          <i>{validateData.name ? "O" : "X"}</i>
         </label>
-        <label htmlFor="username" className="username-input">
+        <label htmlFor="email" className="email-input">
           <input
             type="email"
             id="email"
             placeholder="Email"
             value={formData.email}
             onChange={updateForm}
+            onFocus={tooltipText}
+            onBlur={resetTooltipText}
           />
-          <div>{validateData.email ? "O" : "X"}</div>
+          <i>{validateData.email ? "O" : "X"}</i>
         </label>
         <label htmlFor="password" className="password-input">
           <input
             type="password"
             id="password"
             placeholder="Password"
+            maxLength={16}
             value={formData.password}
             onChange={updateForm}
             onMouseEnter={tooltipText}
             onMouseLeave={resetTooltipText}
+            onFocus={tooltipText}
+            onBlur={resetTooltipText}
           />
-          <div>{validateData.password ? "O" : "X"}</div>
+          {tooltip === "password" && (
+            <span>
+              Password must be between 8 and 16 characters, contain at least one
+              numeric digit, one uppercase and one lowercase letter
+            </span>
+          )}
+          <i>{validateData.password ? "O" : "X"}</i>
         </label>
-        <span className="container-tooltip">{tooltip}</span>
         <button
           type="submit"
           disabled={
