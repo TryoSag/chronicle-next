@@ -38,3 +38,11 @@ First migration to create the different models on db.
 I start with the refactor of the components and functions update.
 First is the Login page, I add the Register form and the Login form on the same page and a selector to choose which one it's show.
 On the register form I add a process to validate the format of the entering data and feedback to the user.
+
+# day 4 (27/2/25)
+
+Yesterday I was thinking about to separate login page and register page and make easier the navigation.
+I complete all the steps to setup the db and the prisma comunication.
+I make more complete the user feedback on register form.
+Start the user actions to make some interactions on the db.
+I need to delete or update the deprecated components and types.
