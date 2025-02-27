@@ -1,18 +1,13 @@
 "use client";
-
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import LoginForm from "@/components/LoginForm/LoginForm";
-import RegisterForm from "@/components/RegisterForm/RegisterForm";
+import Link from "next/link";
 
 const LoginPage = (): JSX.Element => {
-  const [open, setOpen] = useState(false);
-
   return (
     <>
-      {open ? <RegisterForm /> : <LoginForm />}
-      <button className="button-form" onClick={() => setOpen(!open)}>
-        {open ? `Login -->` : `Register -->`}
-      </button>
+      <LoginForm />
+      <Link href="./register">{`Register -->`}</Link>
     </>
   );
 };
