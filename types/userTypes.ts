@@ -9,26 +9,22 @@ export interface IUserTag {
 }
 
 export interface IUser {
-  username: string;
   userId: string;
+  name: string;
   tags: IUserTag[];
 }
-
-export interface IUsername {
-  username: string;
-}
 export interface IToken {
-  username: string;
+  name: string;
   userId: string;
 }
 
-export interface IUserToRegister {
+export interface IUserRegister {
   name: string;
-  username: string;
-  password: string;
+  email: string;
+  pass: string;
 }
 
-export interface IUserToLogin {
-  username: string;
-  password: string;
+export interface IUserLogin {
+  email: string;
+  pass: string;
 }
