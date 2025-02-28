@@ -2,7 +2,7 @@ import { JSX, useState } from "react";
 
 const LoginForm = (): JSX.Element => {
   const emptyLoginForm = {
-    username: "",
+    email: "",
     password: "",
   };
   const [formData, setFormData] = useState(emptyLoginForm);
@@ -16,11 +16,9 @@ const LoginForm = (): JSX.Element => {
 
   const formSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
+    // login a back
     setFormData(emptyLoginForm);
   };
-
-  //const toRegisterButton = () => navigate("/register");
 
   return (
     <main className="container-loginForm">
@@ -30,12 +28,12 @@ const LoginForm = (): JSX.Element => {
         onSubmit={formSubmit}
         noValidate
       >
-        <label htmlFor="username" className="username-input">
+        <label htmlFor="email" className="email-input">
           <input
-            type="text"
-            id="username"
-            placeholder="Username"
-            value={formData.username}
+            type="email"
+            id="email"
+            placeholder="Email"
+            value={formData.email}
             onChange={updateForm}
           />
         </label>
@@ -44,22 +42,19 @@ const LoginForm = (): JSX.Element => {
             type="password"
             id="password"
             placeholder="Password"
+            maxLength={16}
             value={formData.password}
             onChange={updateForm}
           />
         </label>
         <button
           type="submit"
-          disabled={formData.username === "" || formData.password === ""}
+          disabled={formData.email === "" || formData.password === ""}
           className="button-loginForm"
         >
           Login
         </button>
       </form>
-      <button
-        className="button-toRegister"
-        onClick={toRegisterButton}
-      >{`Register -->`}</button>
     </main>
   );
 };

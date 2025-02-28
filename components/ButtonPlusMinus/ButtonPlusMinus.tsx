@@ -10,7 +10,7 @@ const ButtonPlusMinus = ({
   symbol,
 }: propsButtonPlusMinus): JSX.Element => {
   return (
-    <button onClick={action} className="container-plusButton">
+    <button onClick={action} className="container-button">
       <div className={`icon-${symbol}`} />
     </button>
   );

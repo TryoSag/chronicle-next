@@ -6,6 +6,9 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
 # Ideas or not
 
 - index on chronicle tags to change the order in case you need to create a tag and add in middle of the past tags
+- component to notify the user
+- make more stronger the regex
+- separate constant out of the components
 
 # Path
 

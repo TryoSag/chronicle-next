@@ -1,5 +1,5 @@
+import ChronclesList from "@/components/ChroniclesList/ChroniclesList";
 import { JSX } from "react";
-import ChronclesList from "@/src/app/components/ChroniclesList/ChroniclesList";
 
 const chronicles = (): JSX.Element => <ChronclesList />;
 

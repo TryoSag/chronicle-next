@@ -1,5 +1,5 @@
+import EditTagForm from "@/components/EditTagForm/EditTagForm";
 import { JSX } from "react";
-import EditTagForm from "@/src/app/components/EditTagForm/EditTagForm";
 
 const EditTagPage = (): JSX.Element => <EditTagForm />;
 
