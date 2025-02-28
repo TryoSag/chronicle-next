@@ -46,3 +46,10 @@ I complete all the steps to setup the db and the prisma comunication.
 I make more complete the user feedback on register form.
 Start the user actions to make some interactions on the db.
 I need to delete or update the deprecated components and types.
+
+# day 5 (28/2/25)
+
+I create the login and register actions and add response on the differents results.
+Refactor feedback on register Form to have only one feedback object with the different info.
+Add token action and token set on Local storage on register.
+Refactor home to redirect the user if was a valid token on the localstorage.
