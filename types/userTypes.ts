@@ -14,8 +14,8 @@ export interface IUser {
   tags: IUserTag[];
 }
 export interface IToken {
+  id: number;
   name: string;
-  userId: string;
 }
 
 export interface IUserRegister {
