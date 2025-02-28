@@ -1,10 +1,8 @@
-import Link from "next/link";
-import { JSX } from "react";
-
-export default function Home(): JSX.Element {
-  return (
-    <div className="background">
-      <Link href="./login">{`Login -->`}</Link>
-    </div>
-  );
+export default function Home(): void {
+  const token: string | null = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "/login";
+  } else {
+    window.location.href = "/chronicles";
+  }
 }
