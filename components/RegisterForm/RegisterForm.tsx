@@ -2,28 +2,16 @@ import register from "@/app/actions/user/register";
 import { JSX, useState } from "react";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 import token from "@/app/actions/user/token";
+import {
+  defaultName,
+  emptyRegisterForm,
+  inicialFeedback,
+  regexEmail,
+  regExPassword,
+  tokenName,
+} from "@/constants/components";
 
 const RegisterForm = (): JSX.Element => {
-  const emptyRegisterForm = {
-    name: "",
-    email: "",
-    password: "",
-  };
-  const inicialFeedback = {
-    tooltip: "",
-    loading: false,
-    notifications: "",
-    validateData: {
-      name: false,
-      email: false,
-      password: false,
-    },
-  };
-  const regexEmail = new RegExp(
-    "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"
-  );
-  const regExPassword = new RegExp("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$");
-
   const [formData, setFormData] = useState(emptyRegisterForm);
   const [feedback, setFeeback] = useState(inicialFeedback);
 
@@ -32,38 +20,30 @@ const RegisterForm = (): JSX.Element => {
       ...formData,
       [event.target.id]: event.target.value,
     });
+    let updateFeedback = { ...feedback };
     switch (event.target.id) {
       case "name":
-        setFeeback({
-          ...feedback,
-          validateData: {
-            ...feedback.validateData,
-            name:
-              event.target.value.length > 0 && event.target.value.length < 20,
-          },
-        });
+        updateFeedback = {
+          ...updateFeedback,
+          validateName:
+            event.target.value.length > 0 && event.target.value.length < 20,
+        };
         break;
       case "email":
-        setFeeback({
-          ...feedback,
-          validateData: {
-            ...feedback.validateData,
-            email: regexEmail.test(event.target.value),
-          },
-        });
+        updateFeedback = {
+          ...updateFeedback,
+          validateEmail: regexEmail.test(event.target.value),
+        };
         break;
       case "password":
-        setFeeback({
-          ...feedback,
-          validateData: {
-            ...feedback.validateData,
-            password: regExPassword.test(event.target.value),
-          },
-        });
+        updateFeedback = {
+          ...updateFeedback,
+          validatePass: regExPassword.test(event.target.value),
+        };
         break;
       default:
     }
-    setFeeback({ ...feedback, tooltip: event.target.id });
+    setFeeback({ ...updateFeedback, tooltip: event.target.id });
   };
 
   const tooltipText = (
@@ -86,89 +66,93 @@ const RegisterForm = (): JSX.Element => {
       pass: formData.password,
     });
     if (status) {
-      const { userToken } = token({ id: data.id, name: data.name || "User" });
-      localStorage.setItem("token", userToken);
+      const { userToken } = token({
+        id: data.id,
+        name: data.name || defaultName,
+      });
+      localStorage.setItem(tokenName, userToken);
       window.location.href = "/";
     }
 
-    setFeeback({ ...feedback, loading: false, notifications: message });
+    setFeeback({ ...feedback, loading: false });
+    console.log(message);
     setFormData(emptyRegisterForm);
   };
 
   return (
     <main className="container-RegisterForm">
-      {feedback.loading ? (
-        <LoadingAnimation />
-      ) : (
-        <form
-          className="register-form"
-          autoComplete="off"
-          onSubmit={formSubmit}
-          noValidate
+      {feedback.loading && <LoadingAnimation />}
+      <form
+        className="register-form"
+        autoComplete="off"
+        onSubmit={formSubmit}
+        noValidate
+      >
+        <label htmlFor="name" className="name-input">
+          <input
+            type="text"
+            id="name"
+            placeholder="Name"
+            maxLength={20}
+            value={formData.name}
+            onChange={updateForm}
+            onMouseEnter={tooltipText}
+            onMouseLeave={resetTooltipText}
+            onFocus={tooltipText}
+            onBlur={resetTooltipText}
+          />
+          {feedback.tooltip === "name" && (
+            <span>Name must be less than 20 characters</span>
+          )}
+          <i>{feedback.validateName ? "O" : "X"}</i>
+        </label>
+        <label htmlFor="email" className="email-input">
+          <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={updateForm}
+            onFocus={tooltipText}
+            onBlur={resetTooltipText}
+          />
+          {feedback.tooltip === "email" && (
+            <span>Email must be a valid email address, ___@___.com</span>
+          )}
+          <i>{feedback.validateEmail ? "O" : "X"}</i>
+        </label>
+        <label htmlFor="password" className="password-input">
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            maxLength={16}
+            value={formData.password}
+            onChange={updateForm}
+            onMouseEnter={tooltipText}
+            onMouseLeave={resetTooltipText}
+            onFocus={tooltipText}
+            onBlur={resetTooltipText}
+          />
+          {feedback.tooltip === "password" && (
+            <span>
+              Password must be between 8 and 16 characters, contain at least one
+              numeric digit, one uppercase and one lowercase letter
+            </span>
+          )}
+          <i>{feedback.validatePass ? "O" : "X"}</i>
+        </label>
+        <button
+          type="submit"
+          disabled={
+            !feedback.validateName ||
+            !feedback.validateEmail ||
+            !feedback.validatePass
+          }
         >
-          <label htmlFor="name" className="name-input">
-            <input
-              type="text"
-              id="name"
-              placeholder="Name"
-              maxLength={20}
-              value={formData.name}
-              onChange={updateForm}
-              onMouseEnter={tooltipText}
-              onMouseLeave={resetTooltipText}
-              onFocus={tooltipText}
-              onBlur={resetTooltipText}
-            />
-            {feedback.tooltip === "name" && (
-              <span>Name must be less than 20 characters</span>
-            )}
-            <i>{feedback.validateData.name ? "O" : "X"}</i>
-          </label>
-          <label htmlFor="email" className="email-input">
-            <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={updateForm}
-              onFocus={tooltipText}
-              onBlur={resetTooltipText}
-            />
-            <i>{feedback.validateData.email ? "O" : "X"}</i>
-          </label>
-          <label htmlFor="password" className="password-input">
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              maxLength={16}
-              value={formData.password}
-              onChange={updateForm}
-              onMouseEnter={tooltipText}
-              onMouseLeave={resetTooltipText}
-              onFocus={tooltipText}
-              onBlur={resetTooltipText}
-            />
-            {feedback.tooltip === "password" && (
-              <span>
-                Password must be between 8 and 16 characters, contain at least
-                one numeric digit, one uppercase and one lowercase letter
-              </span>
-            )}
-            <i>{feedback.validateData.password ? "O" : "X"}</i>
-          </label>
-          <button
-            type="submit"
-            disabled={
-              !feedback.validateData.name ||
-              !feedback.validateData.email ||
-              !feedback.validateData.password
-            }
-          >
-            Register
-          </button>
-        </form>
-      )}
+          Register
+        </button>
+      </form>
     </main>
   );
 };

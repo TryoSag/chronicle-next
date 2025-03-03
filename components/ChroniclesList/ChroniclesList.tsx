@@ -1,3 +1,4 @@
+"use client";
 import { JSX } from "react";
 import { IChronicle } from "../../types/chroniclesTypes";
 import Chronicle from "../Chronicle/Chronicle";
