@@ -35,7 +35,7 @@ export const register = async ({ name, email, pass }: IUserRegister) => {
       };
     return {
       status: true,
-      message: "User created correctly",
+      message: "",
       data: { id: newUser.id, name: newUser.name },
     };
   } catch (e) {
