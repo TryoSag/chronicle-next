@@ -32,3 +32,24 @@ I add the project on SonarQube, a good tool to improve the detection of errors, 
 https://sonarcloud.io/project/overview?id=TryoSag_chronicle-next
 I changed the models to separate the userTag which is a Tag template that makes the user, from the Tag which has the different fields to write.
 First migration to create the different models on db.
+
+# day 3 (21/2/25)
+
+I start with the refactor of the components and functions update.
+First is the Login page, I add the Register form and the Login form on the same page and a selector to choose which one it's show.
+On the register form I add a process to validate the format of the entering data and feedback to the user.
+
+# day 4 (27/2/25)
+
+Yesterday I was thinking about to separate login page and register page and make easier the navigation.
+I complete all the steps to setup the db and the prisma comunication.
+I make more complete the user feedback on register form.
+Start the user actions to make some interactions on the db.
+I need to delete or update the deprecated components and types.
+
+# day 5 (28/2/25)
+
+I create the login and register actions and add response on the differents results.
+Refactor feedback on register Form to have only one feedback object with the different info.
+Add token action and token set on Local storage on register.
+Refactor home to redirect the user if was a valid token on the localstorage.
