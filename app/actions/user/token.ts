@@ -2,13 +2,16 @@
 import { IToken } from "@/types/userTypes";
 import jwt from "jsonwebtoken";
 
-const token = ({ name, id }: IToken) => {
+const generateToken = async ({
+  name,
+  id,
+}: IToken): Promise<{ userToken: string }> => {
   if (!process.env.JWT_SECRET) {
     throw new Error("JWT_SECRET not found in .env");
   }
-  const userToken = jwt.sign({ name, id }, process.env.JWT_SECRET);
+  const userToken = await jwt.sign({ name, id }, process.env.JWT_SECRET);
 
   return { userToken };
 };
 
-export default token;
+export default generateToken;
