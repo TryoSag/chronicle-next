@@ -1,19 +1,23 @@
-import register from "@/app/actions/user/register";
 import { JSX, useState } from "react";
+import { toast } from "react-toastify";
+import register from "@/app/actions/user/register";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
-import token from "@/app/actions/user/token";
+import generateToken from "@/app/actions/user/token";
 import {
   defaultName,
   emptyRegisterForm,
-  inicialFeedback,
+  inicialRegisterFeedback,
   regexEmail,
   regExPassword,
   tokenName,
+  tooltipRegisterName,
+  tooltipRegisterEmail,
+  tooltipRegisterPass,
 } from "@/constants/components";
 
 const RegisterForm = (): JSX.Element => {
   const [formData, setFormData] = useState(emptyRegisterForm);
-  const [feedback, setFeeback] = useState(inicialFeedback);
+  const [feedback, setFeeback] = useState(inicialRegisterFeedback);
 
   const updateForm = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData({
@@ -66,7 +70,7 @@ const RegisterForm = (): JSX.Element => {
       pass: formData.password,
     });
     if (status) {
-      const { userToken } = token({
+      const { userToken } = await generateToken({
         id: data.id,
         name: data.name || defaultName,
       });
@@ -75,7 +79,7 @@ const RegisterForm = (): JSX.Element => {
     }
 
     setFeeback({ ...feedback, loading: false });
-    console.log(message);
+    toast.error(message);
     setFormData(emptyRegisterForm);
   };
 
@@ -101,9 +105,7 @@ const RegisterForm = (): JSX.Element => {
             onFocus={tooltipText}
             onBlur={resetTooltipText}
           />
-          {feedback.tooltip === "name" && (
-            <span>Name must be less than 20 characters</span>
-          )}
+          {feedback.tooltip === "name" && <span>{tooltipRegisterName}</span>}
           <i>{feedback.validateName ? "O" : "X"}</i>
         </label>
         <label htmlFor="email" className="email-input">
@@ -113,12 +115,12 @@ const RegisterForm = (): JSX.Element => {
             placeholder="Email"
             value={formData.email}
             onChange={updateForm}
+            onMouseEnter={tooltipText}
+            onMouseLeave={resetTooltipText}
             onFocus={tooltipText}
             onBlur={resetTooltipText}
           />
-          {feedback.tooltip === "email" && (
-            <span>Email must be a valid email address, ___@___.com</span>
-          )}
+          {feedback.tooltip === "email" && <span>{tooltipRegisterEmail}</span>}
           <i>{feedback.validateEmail ? "O" : "X"}</i>
         </label>
         <label htmlFor="password" className="password-input">
@@ -135,10 +137,7 @@ const RegisterForm = (): JSX.Element => {
             onBlur={resetTooltipText}
           />
           {feedback.tooltip === "password" && (
-            <span>
-              Password must be between 8 and 16 characters, contain at least one
-              numeric digit, one uppercase and one lowercase letter
-            </span>
+            <span>{tooltipRegisterPass}</span>
           )}
           <i>{feedback.validatePass ? "O" : "X"}</i>
         </label>
