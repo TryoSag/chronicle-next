@@ -3,7 +3,7 @@ export const tokenName = "tokenChronicles";
 export const defaultName = "User";
 
 export const regexEmail = new RegExp(
-  "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"
+  "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
 );
 export const regExPassword = new RegExp(
   "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$"
