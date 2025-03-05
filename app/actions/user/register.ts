@@ -1,4 +1,5 @@
 "use server";
+import { defaultName } from "@/constants/components";
 import prisma from "@/lib/prisma";
 import { IUserRegister } from "@/types/userTypes";
 import bcrypt from "bcryptjs";
@@ -22,7 +23,7 @@ export const register = async ({ name, email, pass }: IUserRegister) => {
 
     const newUser = await prisma.user.create({
       data: {
-        name: name || "User",
+        name: name || defaultName,
         email,
         pass: hashedPass,
       },

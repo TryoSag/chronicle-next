@@ -1,11 +1,26 @@
 "use client";
-import { JSX } from "react";
+import { JSX, useEffect, useState } from "react";
 import { IChronicle } from "../../types/chroniclesTypes";
-import Chronicle from "../Chronicle/Chronicle";
+import Chronicle from "./Chronicle/Chronicle";
 import ButtonPlusMinus from "../ButtonPlusMinus/ButtonPlusMinus";
+import { tokenName } from "@/constants/components";
+import { openToken } from "@/app/actions/user/token";
+import { toast } from "react-toastify";
 
 const ChronclesList = (): JSX.Element => {
-  const chronicles: IChronicle[] = [];
+  const [chronicles, setChronicles] = useState<IChronicle[]>([]);
+
+  const getChronicles = async (): Promise<void> => {
+    const token: string | null = await localStorage.getItem(tokenName);
+    if (token) {
+      const { name, id } = await openToken(token);
+    }
+    toast.error("You are not logged in");
+  };
+
+  useEffect(() => {
+    getChronicles();
+  }, []);
 
   const newChronicle = (): void => {};
 
@@ -19,8 +34,10 @@ const ChronclesList = (): JSX.Element => {
             key={chronicleId}
           />
         ))}
+        <li key={"addChronicle"}>
+          <ButtonPlusMinus action={newChronicle} symbol="plus" />
+        </li>
       </ul>
-      <ButtonPlusMinus action={newChronicle} symbol="plus" />
     </main>
   );
 };
