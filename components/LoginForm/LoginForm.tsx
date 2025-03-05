@@ -2,7 +2,7 @@ import { JSX, useState } from "react";
 import { toast } from "react-toastify";
 import login from "@/app/actions/user/login";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
-import generateToken from "@/app/actions/user/token";
+import { generateToken } from "@/app/actions/user/token";
 import {
   defaultName,
   emptyLoginForm,

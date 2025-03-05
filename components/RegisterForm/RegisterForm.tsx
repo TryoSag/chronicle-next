@@ -2,7 +2,7 @@ import { JSX, useState } from "react";
 import { toast } from "react-toastify";
 import register from "@/app/actions/user/register";
 import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
-import generateToken from "@/app/actions/user/token";
+import { generateToken } from "@/app/actions/user/token";
 import {
   defaultName,
   emptyRegisterForm,
@@ -20,29 +20,29 @@ const RegisterForm = (): JSX.Element => {
   const [feedback, setFeeback] = useState(inicialRegisterFeedback);
 
   const updateForm = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const trimedValue = event.target.value.trim();
     setFormData({
       ...formData,
-      [event.target.id]: event.target.value,
+      [event.target.id]: trimedValue,
     });
     let updateFeedback = { ...feedback };
     switch (event.target.id) {
       case "name":
         updateFeedback = {
           ...updateFeedback,
-          validateName:
-            event.target.value.length > 0 && event.target.value.length < 20,
+          validateName: trimedValue.length > 0 && trimedValue.length < 20,
         };
         break;
       case "email":
         updateFeedback = {
           ...updateFeedback,
-          validateEmail: regexEmail.test(event.target.value),
+          validateEmail: regexEmail.test(trimedValue),
         };
         break;
       case "password":
         updateFeedback = {
           ...updateFeedback,
-          validatePass: regExPassword.test(event.target.value),
+          validatePass: regExPassword.test(trimedValue),
         };
         break;
       default:
