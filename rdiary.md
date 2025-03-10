@@ -53,3 +53,7 @@ I create the login and register actions and add response on the differents resul
 Refactor feedback on register Form to have only one feedback object with the different info.
 Add token action and token set on Local storage on register.
 Refactor home to redirect the user if was a valid token on the localstorage.
+
+# day 6 (10/3/25)
+
+MWC gap
