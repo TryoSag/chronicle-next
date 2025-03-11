@@ -6,9 +6,9 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
 # Ideas or not
 
 - index on chronicle tags to change the order in case you need to create a tag and add in middle of the past tags
-- component to notify the user
-- make more stronger the regex
-- separate constant out of the components
+- X component to notify the user (add toastify for feedback)
+- X make more stronger the regex (add new email regex)
+- X separate constant out of the components (add constants folder)
 
 # Path
 
@@ -62,6 +62,10 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
   - Modal edit tag
     - Tag creator form (tag data)
     - fetch post (id tag, new tag data)
+    - 
+  //Transform in add new tag with all data default?
+     Expan the tag creator to creator and editor form
+     Make modal input to add category data?
   - Modal create tag
     - Tag creator form (empty data)
       - empty data
@@ -86,6 +90,7 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
   - name (unique)
   - tags : tag[]
 
+// delete model?
 - userTag
 
   - id
