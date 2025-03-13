@@ -1,5 +1,5 @@
+import UserTagsList from "@/components/UserTagsList/UserTagsList";
 import { JSX } from "react";
-import UserTagsList from "@/src/app/components/UserTagsList/UserTagsList";
 
 const UserTagsPage = (): JSX.Element => <UserTagsList />;
 
