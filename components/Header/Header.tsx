@@ -1,7 +1,9 @@
-import { JSX } from "react";
+import { JSX, useState } from "react";
 import Image from "next/image";
+import Menu from "../Menu/Menu";
 
 const Header = (): JSX.Element => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <header>
       <Image
@@ -11,7 +13,10 @@ const Header = (): JSX.Element => {
         height={50}
       />
       <h1 className="text-title">Chronicler</h1>
-      <button className="icon-logout">Adios</button>
+      <button className="icon-menu" onClick={() => setShowMenu(!showMenu)}>
+        ...
+      </button>
+      <Menu visible={showMenu} />
     </header>
   );
 };
