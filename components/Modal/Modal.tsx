@@ -2,15 +2,15 @@ import { JSX } from "react";
 
 interface propsModal {
   open: boolean;
-  content: () => JSX.Element;
+  children: JSX.Element;
 }
 
-const Modal = ({ open, content }: propsModal): JSX.Element => {
+const Modal = ({ open, children }: propsModal): JSX.Element => {
   return (
     <>
       {open && (
         <div className="modal">
-          <div className="modal-content">{content()}</div>
+          <div className="modal-content">{children}</div>
         </div>
       )}
     </>
