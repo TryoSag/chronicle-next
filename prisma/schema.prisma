@@ -19,8 +19,8 @@ model User {
   email String    @unique
   pass  String
   chronicles Chronicle[]
-  usertags userTag[]
-  tags tag[]
+  usertags UserTag[]
+  tags Tag[]
 }
 
 model Chronicle {
@@ -28,7 +28,7 @@ model Chronicle {
   author User     @relation(fields: [userId], references: [id])
   userId Int
   name   String   
-  tags   tag[]
+  chronicleTag ChronicleTag[]
 
   @@unique([name, userId])
 }
@@ -37,11 +37,11 @@ model Category {
   id      Int     @id @default(autoincrement())
   name    String
   text    String?
-  tag     tag[]
-  userTag userTag[]
+  tag     Tag[]
+  userTag UserTag[]
 }
 
-model userTag {
+model UserTag {
   id      Int     @id @default(autoincrement())
   author  User    @relation(fields: [userId], references: [id])
   userId  Int
@@ -51,7 +51,7 @@ model userTag {
   categories Category[]
   
 }
-model tag {
+model Tag {
   id      Int     @id @default(autoincrement())
   author  User    @relation(fields: [userId], references: [id])
   userId  Int
@@ -61,5 +61,14 @@ model tag {
   resume  String?
   categories Category[]
   description String?
-  chronicle Chronicle[]
+  chronicleTag ChronicleTag[]
+}
+
+model ChronicleTag {
+  chronicleId Int
+  tagId       Int
+  chronicle   Chronicle @relation(fields: [chronicleId], references: [id])
+  tag         Tag       @relation(fields: [tagId], references: [id])
+
+  @@id([chronicleId, tagId])
 }
