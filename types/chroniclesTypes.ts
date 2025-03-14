@@ -3,3 +3,8 @@ export interface IChronicle {
   name: string;
   userId: number;
 }
+
+export interface ICreateChronicle {
+  name: string;
+  userId: number;
+}
