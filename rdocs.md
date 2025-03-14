@@ -9,6 +9,9 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
 - X component to notify the user (add toastify for feedback)
 - X make more stronger the regex (add new email regex)
 - X separate constant out of the components (add constants folder)
+- Delete userTag and add in new tag all data default?
+  Modify the tag creator to creator and editor form
+  Make a modal input to add category data every time you need to add a new category on tags creator?
 
 # Path
 
@@ -62,10 +65,7 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
   - Modal edit tag
     - Tag creator form (tag data)
     - fetch post (id tag, new tag data)
-    - 
-  //Transform in add new tag with all data default?
-     Expan the tag creator to creator and editor form
-     Make modal input to add category data?
+    -
   - Modal create tag
     - Tag creator form (empty data)
       - empty data
@@ -90,7 +90,6 @@ And it's probably some words are in lenguages like catalan and spanish, sometime
   - name (unique)
   - tags : tag[]
 
-// delete model?
 - userTag
 
   - id

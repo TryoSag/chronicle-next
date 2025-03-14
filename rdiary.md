@@ -57,3 +57,17 @@ Refactor home to redirect the user if was a valid token on the localstorage.
 # day 6 (10/3/25)
 
 MWC gap
+Finished the user components part.
+Try new app structure deleting user tags and add new propierties to tags.
+Return to the old structure, add the idea on docs like future feature.
+Check and update ideas.
+Add and abstract the token actions
+Starting with chronicles part.
+Divide types on tags and chronicles.
+Create a loged loyout with a header with nav menu
+
+# day 7 (14/3/25)
+
+Add modals with the create and delete functionalities on the chronicles list components.
+Add a new Prisma model to relate Tags and Chronicles it's very confuse to me the SQL system to group and relate the diferents models.
+Add the feedback on chronicles list
