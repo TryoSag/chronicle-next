@@ -1,18 +1,18 @@
-import { JSX, SetStateAction, useState } from "react";
+import { JSX, useState } from "react";
 import { toast } from "react-toastify";
 import { IChronicle, ICreateChronicle } from "@/types/chroniclesTypes";
 import { createChronicle } from "@/app/actions/chronicle/chronicle";
 
 type createChronicleFormProps = {
   chronicles: IChronicle[];
-  setOpenModal: (value: SetStateAction<boolean>) => void;
   userId: number;
+  props?: { closeModalAction: () => void };
 };
 
 const CreateChronicleForm = ({
   chronicles,
-  setOpenModal,
   userId,
+  props,
 }: createChronicleFormProps): JSX.Element => {
   const emptyNewChronicle = "";
 
@@ -34,7 +34,7 @@ const CreateChronicleForm = ({
       const { status, message } = await createChronicle(newChronicle);
       if (status) {
         toast.success(message);
-        setOpenModal(false);
+        if (props && props.closeModalAction) props.closeModalAction();
       } else {
         toast.error(message);
       }
