@@ -28,12 +28,8 @@ const ChronclesList = (): JSX.Element => {
 
   return (
     <main className="container-chronicleList">
-      <Modal open={openModal}>
-        <CreateChronicleForm
-          chronicles={chronicles}
-          userId={userId.current}
-          setOpenModal={setOpenModal}
-        />
+      <Modal open={openModal} closeModalAction={() => setOpenModal(false)}>
+        <CreateChronicleForm chronicles={chronicles} userId={userId.current} />
       </Modal>
       <ul>
         {chronicles.map(({ name, id }) => (

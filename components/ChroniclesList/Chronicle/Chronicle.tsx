@@ -1,3 +1,4 @@
+import { deleteChronicle } from "@/app/actions/chronicle/chronicle";
 import Modal from "@/components/Modal/Modal";
 import { JSX, useState } from "react";
 import { toast } from "react-toastify";
@@ -14,7 +15,7 @@ const Chronicle = ({ name, id }: propsChronicle): JSX.Element => {
     window.location.href = `/tags/${id.toString()}`;
   };
 
-  const deleteChronicle = async (): Promise<void> => {
+  const confirmDeleteChronicle = async (): Promise<void> => {
     const { status, message } = await deleteChronicle(id);
     if (status) {
       window.location.href = "/chronicles";
@@ -25,12 +26,12 @@ const Chronicle = ({ name, id }: propsChronicle): JSX.Element => {
 
   return (
     <li onClick={action} className="container-chronicle">
-      <Modal open={openModal}>
+      <Modal open={openModal} closeModalAction={() => setOpenModal(false)}>
         <div className="modal-chronicle-delete">
           <span>
             Are you sure you want to delete this chronicle and its tags?
           </span>
-          <button onClick={deleteChronicle}>Yes</button>
+          <button onClick={confirmDeleteChronicle}>Yes</button>
           <button onClick={() => setOpenModal(false)}>No</button>
         </div>
       </Modal>
